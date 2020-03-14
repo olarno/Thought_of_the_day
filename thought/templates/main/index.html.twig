@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Thought list{% endblock %}
+
+{% block body %}
+<div class="container">
+<div class="row">
+<h1>Thought list</h1>
+</div>
+<div class="row">
+{% for thought in thoughts %}
+
+<div class="col">
+<h3>{{ thought.title }}</h3>
+<p>{{ thought.thought }}</p>
+</div>
+
+{% endfor %}
+</div>
+</div>
+{% endblock %}

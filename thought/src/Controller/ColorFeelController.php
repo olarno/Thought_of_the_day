@@ -19,7 +19,7 @@ class ColorFeelController extends AbstractController
     public function browse(ColorFeelRepository $colorFeelRepository)
     {
         return $this->render('color_feel/index.html.twig', [
-            'colorFeel' => $colorFeelRepository->findAll(),
+            'colorFeels' => $colorFeelRepository->findAll(),
         ]);
     }
     /**

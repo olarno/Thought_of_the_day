@@ -59,25 +59,30 @@ class ThoughtRepository extends ServiceEntityRepository
         return $this->createQueryBuilder('t')
             ->join('t.colors', 'c')
             ->addSelect('t, c')
-            ->orderBy('t.createdAt')
+            ->orderBy('t.createdAt', 'DESC')
             ->setMaxResults($limit)
             ->getQuery()
             ->getResult();
     }
     /**
-     * Cette fonction nous permete de récuperer les 10 dernières entrées 
+     * Cette fonction nous permet de récupere les thought du mois
      * @param integer $limit par défaut il est régler à 10
      * @return Thought[] Returns an array of Thought objects
      */
 
     public function findCurrentMonth()
     {
+        // on instancie la date 
+        // a laquelle on vas récupere le jour
         $date = new \DateTime();
         $day = $date->format('d') ;
 
+        // on instancier une date de début 
+        // on partant de la date du jour et en lui retirant le nombre de jour deja effectuer
         $beginDate = new \DateTime();
         $beginDate->modify('-'.$day.' day');
-
+        
+        // on prend la date du jour et on ajoute un mois 
         $endDate =  new \DateTime();
         $endDate->modify('+1 month');
        

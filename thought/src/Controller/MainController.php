@@ -9,6 +9,18 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class MainController extends AbstractController
 {
+    
+    /**
+     * Affiche les 10 derniere entrées
+     *
+     * @Route("/", name="homepage")
+     */
+    public function home()
+    {
+        return $this->render('main/home.html.twig', [
+            
+        ]);
+    }
     /**
      * Affiche les 10 derniere entrées
      *

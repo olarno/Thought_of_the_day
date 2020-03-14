@@ -96,6 +96,7 @@ class ThoughtRepository extends ServiceEntityRepository
             ->andWhere('t.createdAt < :end')
             ->setParameter('begin', $beginDate)
             ->setParameter('end', $endDate)
+            ->orderBy('t.createdAt', 'DESC')
             ->getQuery()
             ->getResult();
     }

@@ -17,14 +17,14 @@ class Thought
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=20)
+     * @ORM\Column(type="string", length=30)
      */
     private $title;
 
     /**
      * @ORM\Column(type="text")
      */
-    private $thought;
+    private $content;
 
     /**
      * @ORM\Column(type="datetime")
@@ -35,12 +35,13 @@ class Thought
      * @ORM\Column(type="datetime", nullable=true)
      */
     private $updatedAt;
-    
-    public function __construct()
-    {
-        $this->createdAt = new \DateTime();
-    }
-    
+
+    /**
+     * @ORM\OneToOne(targetEntity="App\Entity\ColorFeel", cascade={"persist", "remove"})
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $color;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -58,14 +59,14 @@ class Thought
         return $this;
     }
 
-    public function getThought(): ?string
+    public function getContent(): ?string
     {
-        return $this->thought;
+        return $this->content;
     }
 
-    public function setThought(string $thought): self
+    public function setContent(string $content): self
     {
-        $this->thought = $thought;
+        $this->content = $content;
 
         return $this;
     }
@@ -90,6 +91,18 @@ class Thought
     public function setUpdatedAt(?\DateTimeInterface $updatedAt): self
     {
         $this->updatedAt = $updatedAt;
+
+        return $this;
+    }
+
+    public function getColor(): ?ColorFeel
+    {
+        return $this->color;
+    }
+
+    public function setColor(ColorFeel $color): self
+    {
+        $this->color = $color;
 
         return $this;
     }

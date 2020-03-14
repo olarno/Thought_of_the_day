@@ -2,3 +2,7 @@ App\Entity\Thought:
     thought_{1..100}:
         title: '<word()>'
         thought: '<text(120)>'
+
+
+
+

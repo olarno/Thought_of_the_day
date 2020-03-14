@@ -1,0 +1,37 @@
+%YAML 1.1
+---
+# thought.color_feel
+-
+  id: 1
+  color: "#F30C0C"
+  feel: "Rage"
+-
+  id: 2
+  color: "#F3B80C"
+  feel: "Vigilance"
+-
+  id: 3
+  color: "#F3F00C"
+  feel: "Extase"
+-
+  id: 4
+  color: "#0CF310"
+  feel: "Adoration"
+-
+  id: 5
+  color: "#1A751C"
+  feel: "Terreur"
+-
+  id: 6
+  color: "#0CD0F3"
+  feel: "Etonnement"
+-
+  id: 7
+  color: "#130CF3"
+  feel: "Chagrin"
+-
+  id: 8
+  color: "#E50CF3"
+  feel: "Aversion"
+...
+

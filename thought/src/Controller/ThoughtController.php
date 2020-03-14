@@ -2,9 +2,12 @@
 
 namespace App\Controller;
 
+use App\Entity\Thought;
+use App\Form\ThoughtType;
 use App\Repository\ThoughtRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\HttpFoundation\Request;
 
 
 /**
@@ -46,10 +49,28 @@ class ThoughtController extends AbstractController
     /**
      * @Route("/add", name="add")
      */
-    public function add(ThoughtRepository $thoughtRepository)
+    public function add(Request $request)
     {
+        $form = $this->createForm(ThoughtType::class);
 
-        return $this->render('thought/add.html.twig', []);
+        $form->handleRequest($request);
+
+        if($form->isSubmitted() && $form->isValid()) {
+            $thought = $form->getData();
+            dump($thought);
+
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($thought);
+            $em->flush();
+
+            return $this->redirectToRoute('main');
+         
+        }
+
+
+        return $this->render('thought/add.html.twig', [
+            'form' => $form->createView(),
+        ]);
     }
     /**
      * @Route("/delete/{id}", name="delete", requirements={"id" : "\d+"})

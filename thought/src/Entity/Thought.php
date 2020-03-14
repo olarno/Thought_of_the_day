@@ -46,6 +46,10 @@ class Thought
         $this->createdAt = new \DateTime();
     }
 
+    public function __toString()
+    {
+        return $this->colors;
+    }
 
     public function getId(): ?int
     {

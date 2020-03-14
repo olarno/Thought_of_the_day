@@ -42,6 +42,11 @@ class ColorFeel
     {
         $this->thoughts = new ArrayCollection();
     }
+    
+    public function __toString()
+    {
+        return $this->feel;
+    }
 
     public function getId(): ?int
     {

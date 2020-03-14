@@ -19,22 +19,21 @@ class ThoughtRepository extends ServiceEntityRepository
         parent::__construct($registry, Thought::class);
     }
 
-    // /**
-    //  * @return Thought[] Returns an array of Thought objects
-    //  */
-    /*
-    public function findByExampleField($value)
+    /**
+    * @return Thought[] Returns an array of Thought objects
+    */
+    
+    public function findAllComplete()
     {
         return $this->createQueryBuilder('t')
-            ->andWhere('t.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('t.id', 'ASC')
-            ->setMaxResults(10)
+            ->join('t.colors', 'c') 
+            ->addSelect('t, c')  
+            ->orderBy('t.createdAt')        
             ->getQuery()
             ->getResult()
         ;
     }
-    */
+    
 
     /*
     public function findOneBySomeField($value): ?Thought

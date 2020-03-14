@@ -1,7 +1,15 @@
+App\Entity\ColorFeel:
+    color_{1..10}:
+        color: '<hexcolor()>'
+        feel: '<word()>'
+
 App\Entity\Thought:
     thought_{1..100}:
         title: '<word()>'
-        thought: '<text(120)>'
+        content: '<text(120)>'
+        colors: '@color*'
+
+
 
 
 

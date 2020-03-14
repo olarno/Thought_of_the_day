@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -25,6 +27,16 @@ class ColorFeel
      * @ORM\Column(type="string", length=30)
      */
     private $feel;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Thought", mappedBy="colors")
+     */
+    private $thoughts;
+
+    public function __construct()
+    {
+        $this->thoughts = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -51,6 +63,37 @@ class ColorFeel
     public function setFeel(string $feel): self
     {
         $this->feel = $feel;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Thought[]
+     */
+    public function getThoughts(): Collection
+    {
+        return $this->thoughts;
+    }
+
+    public function addThought(Thought $thought): self
+    {
+        if (!$this->thoughts->contains($thought)) {
+            $this->thoughts[] = $thought;
+            $thought->setColors($this);
+        }
+
+        return $this;
+    }
+
+    public function removeThought(Thought $thought): self
+    {
+        if ($this->thoughts->contains($thought)) {
+            $this->thoughts->removeElement($thought);
+            // set the owning side to null (unless already changed)
+            if ($thought->getColors() === $this) {
+                $thought->setColors(null);
+            }
+        }
 
         return $this;
     }

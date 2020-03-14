@@ -37,10 +37,14 @@ class Thought
     private $updatedAt;
 
     /**
-     * @ORM\OneToOne(targetEntity="App\Entity\ColorFeel", cascade={"persist", "remove"})
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\ManyToOne(targetEntity="App\Entity\ColorFeel", inversedBy="thoughts")
      */
-    private $color;
+    private $colors;
+
+    public function __construct()
+    {
+        $this->createdAt = new \DateTime();
+    }
 
     public function getId(): ?int
     {
@@ -95,14 +99,14 @@ class Thought
         return $this;
     }
 
-    public function getColor(): ?ColorFeel
+    public function getColors(): ?ColorFeel
     {
-        return $this->color;
+        return $this->colors;
     }
 
-    public function setColor(ColorFeel $color): self
+    public function setColors(?ColorFeel $colors): self
     {
-        $this->color = $color;
+        $this->colors = $colors;
 
         return $this;
     }

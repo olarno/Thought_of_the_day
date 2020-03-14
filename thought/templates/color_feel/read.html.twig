@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+	{{ colorFeel.feel }}
+{% endblock %}
+
+{% block body %}
+
+	<div class="container">
+
+		<div class="card text-center mt-5">
+			<div class="card-header">
+				{{ colorFeel.feel }}
+			</div>
+			<div class="card-body">
+				<p class="card-text">{{ colorFeel.description }}</p>
+			</div>
+			<div class="card-footer text-muted">
+				{{ colorFeel.color }}
+			</div>
+		</div>
+
+	</div>
+
+
+{% endblock %}

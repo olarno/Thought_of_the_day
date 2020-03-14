@@ -20,7 +20,7 @@ class ThoughtRepository extends ServiceEntityRepository
     }
 
     /**
-    * @return Thought[] Returns an array of Thought objects
+    * @return Thought[] Returns all Thought objects
     */
     
     public function findAllComplete()
@@ -29,6 +29,40 @@ class ThoughtRepository extends ServiceEntityRepository
             ->join('t.colors', 'c') 
             ->addSelect('t, c')  
             ->orderBy('t.createdAt')        
+            ->getQuery()
+            ->getResult()
+        ;
+    }
+
+    /**
+    * @return Thought Returns an single complete Thought objects
+    */
+    
+    public function findComplete($id)
+    {
+        return $this->createQueryBuilder('t')
+            ->join('t.colors', 'c') 
+            ->addSelect('t, c')  
+            ->where('t.id = :id')
+            ->setParameter('id', $id)    
+            ->getQuery()
+            ->getSingleResult()
+           ;
+    }
+
+    /**
+     * Cette fonction nous permete de récuperer les 10 dernières entrées 
+     * @param integer $limit par défaut il est régler à 10
+    * @return Thought[] Returns an array of Thought objects
+    */
+    
+    public function findTenLastComplete($limit = 10)
+    {
+        return $this->createQueryBuilder('t')
+            ->join('t.colors', 'c') 
+            ->addSelect('t, c')  
+            ->orderBy('t.createdAt')        
+            ->setMaxResults($limit)
             ->getQuery()
             ->getResult()
         ;

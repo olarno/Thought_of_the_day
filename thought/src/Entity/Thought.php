@@ -46,6 +46,7 @@ class Thought
         $this->createdAt = new \DateTime();
     }
 
+
     public function getId(): ?int
     {
         return $this->id;

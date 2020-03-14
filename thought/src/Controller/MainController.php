@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Repository\ThoughtRepository;
+use DateTime;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -27,6 +28,7 @@ class MainController extends AbstractController
      */
     public function month(ThoughtRepository $thoughtRepository)
     {
+
         return $this->render('main/month.html.twig', [
             'thoughts' => $thoughtRepository->findCurrentMonth(),
         ]);

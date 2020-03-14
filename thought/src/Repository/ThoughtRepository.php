@@ -72,13 +72,25 @@ class ThoughtRepository extends ServiceEntityRepository
 
     public function findCurrentMonth()
     {
-        $month = new \DateTime();
+        $date = new \DateTime();
+        $day = $date->format('d') ;
 
-        return $this->createQueryBuilder('t')
+        $beginDate = new \DateTime();
+        $beginDate->modify('-'.$day.' day');
+
+        $endDate =  new \DateTime();
+        $endDate->modify('+1 month');
+       
+
+         //dd($day, $beginDate, $endDate);
+
+           return $this->createQueryBuilder('t')
             ->join('t.colors', 'c')
             ->addSelect('t, c')
-            ->where('t.createdAt = :month')
-            ->setParameter('month', $month)
+            ->where('t.createdAt > :begin')
+            ->andWhere('t.createdAt < :end')
+            ->setParameter('begin', $beginDate)
+            ->setParameter('end', $endDate)
             ->getQuery()
             ->getResult();
     }

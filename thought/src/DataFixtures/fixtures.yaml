@@ -5,7 +5,7 @@ App\Entity\ColorFeel:
         description: '<text(200)>'
 
 App\Entity\Thought:
-    thought_{1..100}:
+    thought_{1..30}:
         title: '<word()>'
         content: '<text(120)>'
         colors: '@color*'

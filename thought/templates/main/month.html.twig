@@ -3,7 +3,39 @@
 {% block title %}Feels this month{% endblock %}
 
 {% block body %}
+{% dump(thoughts) %}
+
 	<h1>This month</h1>
 
-{{ dump(thoughts)}}
+
+	<div class="container">
+		<div class="row">
+			{% for thought in thoughts %}
+				<div class="col-4">
+					<div class="card text-center mt-2">
+						<div class="card-header">
+							<a href="{{ path('thought_read', {'id': thought.id}) }}">
+								{{ thought.title }}</a>
+						</div>
+						<div class="card-body">
+							<p class="card-text">{{ thought.content }}</p>
+						</div>
+						<div class="card-footer text-muted">
+							<div class="row">
+								<div class="col-4">
+									<div class="square" style="background-color: {{thought.colors.color}};"></div>
+									<a href="{{ path('colorFeel_read', {'id': thought.colors.id}) }}">{{ thought.colors.feel }}</a>
+								</div>
+								<div class="col-8">
+									<p class="text-muted">{{thought.createdAt|date ("D j F Y à H:m") }}</p>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			{% endfor %}
+		</div>
+	</div>
+
+
 {% endblock %}

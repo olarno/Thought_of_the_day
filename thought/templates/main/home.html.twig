@@ -1,59 +1,9 @@
-<!DOCTYPE html>
-<html>
-	<head>
-		<meta charset="UTF-8">
-		<title>
-			{% block title %}Welcome!
-			{% endblock %}
-		</title>
-		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-		{% block head_css %}
-			<!-- Bootstrap CSS -->
-			<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-		{% endblock %}
-		<link rel="stylesheet" href="{{ asset('css/style.css') }}"> {% block stylesheets %}{% endblock %}
-		</head>
-		<body class="text-center">
+{% extends 'base.html.twig' %}
 
-			<div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
+{% block title %}
+Thought of the day
+{% endblock %}
 
-				<header class="thought-head mb-auto">
-					<div class="inner">
-						<h3 class="thought-brand mb-auto">Thought</h3>
-						<nav class="nav nav-thought justify-contetn-center">
-							<a href="" class="nav-link">Découvrir le concept</a>
-							<a href="" class="nav-link">Adherer au concept</a>
-							<a href="" class="nav-link">FAQ</a>
-						</nav>
-					</div>
-				</header>
+{% block body %}
 
-				<main class="inner cover" role="main">
-					<h1 class="cover-heading"></h1>
-					<p class="lead">Application de classification de nos "petites pensées".</p>
-					<p class="lead">Vous pourrez ajouter des pensées et les classées par couleurs, suivant l'émotion que cette pensée vous fait ressentir</p>
-					<p class="lead">
-						<a href="{{ path('main') }}" class="btn btn-lg btn-secondary">Découvrir le concept</a>
-					</p>
-
-				</main>
-
-				<footer class="thought-footer mt-auto">
-					<div class="inner">
-						<p>Contact us
-							<a href="">Thought</a>, By
-							<a href="">A&O</a>.</p>
-					</div>
-				</footer>
-
-			</div>
-			{% block head_js %}
-				<!-- Optional JavaScript -->
-				<!-- jQuery first, then Popper.js, then Bootstrap JS --><script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"> </script>
-				<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-				<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
-			{% endblock %}
-			{% block javascripts %}{% endblock %}
-
-		</body>
-	</html>
+{% endblock %}

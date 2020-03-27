@@ -7,7 +7,8 @@
 
 <ul>
 {% for thought in thoughts %}
-<li><a href="{{ path('thought_read', {'id':thought.id})}}">{{thought.title}}</a></li>    
+{% dump(thought.colors) %}
+<li><div class="square {{ thought.colors }}">Feel </span> ~ <a href="{{ path('thought_read', {'id':thought.id})}}">{{thought.title}}</a> écrite le : {{ thought.createdAt|date("d/m à h:m") }}</li>    
 {% endfor %}
 </ul>
 

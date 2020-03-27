@@ -16,8 +16,13 @@ use Symfony\Component\HttpFoundation\Request;
 class ThoughtController extends AbstractController
 {
     /**
+     * Browse - 
+     * Liste TOUTES les thoughts en les affichant sous forme de liste
+     * Chaque entree est afficher avec sa couleur 
+     * 
      * @Route("s", name="browse")
      */
+    // TODO : Ajouter un systeme pour archiver les données, et ainsi épurée un peu la lsite
     public function browse(ThoughtRepository $thoughtRepository)
     {
         return $this->render('thought/index.html.twig', [
@@ -25,29 +30,37 @@ class ThoughtController extends AbstractController
         ]);
     }
     /**
+     * Read - 
+     * Affiche le contenu du thought precis 
+     * Incluant : 
+     *  - title     =>   le titre du thought
+     *  - content   =>   le contenu du thought 
+     *  - colors    =>   retourne un tableau d'objet ColorFeel issue de la relation 
      * @Route("/read/{id}", name="read", requirements={"id" : "\d+"})
      */
-    public function read(ThoughtRepository $thoughtRepository, $id)
+    public function read(ThoughtRepository $thoughtRepository, Thought $thought)
     {
-        $thought = $thoughtRepository->findComplete($id);
-
         return $this->render('thought/read.html.twig', [
             'thought' => $thought,
         ]);
     }
+
+    // TODO
     /**
+     * Edit - Encours de developpement 
+     * 
      * @Route("/edit/{id}", name="edit", requirements={"id" : "\d+"})
      */
-    public function edit(ThoughtRepository $thoughtRepository, $id)
+    public function edit()
     {
-        $thought = $thoughtRepository->findComplete($id);
-
         return $this->render('thought/edit.html.twig', [
-            'thought' => $thought,
         ]);
     }
     /**
-     * @Route("/add", name="add")
+     * Add - 
+     * Affiche un formulaire d'ajout gerer par le ThoughtType
+     * 
+     * @Route("/add", name="add", methods={"GET", "POST"})
      */
     public function add(Request $request)
     {
@@ -55,7 +68,7 @@ class ThoughtController extends AbstractController
 
         $form->handleRequest($request);
 
-        if($form->isSubmitted() && $form->isValid()) {
+        if ($form->isSubmitted() && $form->isValid()) {
             $thought = $form->getData();
             dump($thought);
 
@@ -64,7 +77,6 @@ class ThoughtController extends AbstractController
             $em->flush();
 
             return $this->redirectToRoute('main');
-         
         }
 
 
@@ -72,15 +84,15 @@ class ThoughtController extends AbstractController
             'form' => $form->createView(),
         ]);
     }
+    // TODO
     /**
+     * Delete - En cours de developpement
+     * 
      * @Route("/delete/{id}", name="delete", requirements={"id" : "\d+"})
      */
-    public function delete(ThoughtRepository $thoughtRepository, $id)
+    public function delete()
     {
-        $thought = $thoughtRepository->findComplete($id);
-
         return $this->render('thought/delete.html.twig', [
-            'thought' => $thought,
         ]);
     }
 }
